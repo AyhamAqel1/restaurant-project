@@ -64,19 +64,68 @@ app.get("/", (req, res) => {
 });
 app.get("/recommend", (req, res) => {
   const meal = req.query.meal;
+
   db.query(
     "SELECT name FROM restaurants WHERE meal = ?",
     [meal],
     (err, results) => {
+
+      let message = "";
+      let color = "";
+
       if (results.length > 0) {
-        res.send("Recommended Restaurant: " + results[0].name);
+        message = `🍽️ Recommended Restaurant: <strong>${results[0].name}</strong>`;
+        color = "#28a745"; // أخضر
       } else {
-        res.send("No restaurant found");
+        message = "❌ No restaurant found for this meal";
+        color = "#dc3545"; // أحمر
       }
+
+      res.send(`
+      <html>
+      <head>
+        <title>Result</title>
+        <style>
+          body {
+            font-family: Arial;
+            background: #f4f6f8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+          }
+          .result-card {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            text-align: center;
+          }
+          .message {
+            color: ${color};
+            font-size: 20px;
+            margin-bottom: 20px;
+          }
+          a {
+            text-decoration: none;
+            color: white;
+            background: #007bff;
+            padding: 10px 20px;
+            border-radius: 5px;
+          }
+        </style>
+      </head>
+      <body>
+        <div class="result-card">
+          <div class="message">${message}</div>
+          <a href="/">⬅ Back</a>
+        </div>
+      </body>
+      </html>
+      `);
     }
   );
 });
-
 app.listen(3000, () => {
   console.log("Server running on port 3000");
 });
