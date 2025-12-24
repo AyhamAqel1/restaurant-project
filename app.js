@@ -14,6 +14,13 @@ app.get("/", (req, res) => {
   <head>
     <title>Restaurant App</title>
     <style>
+<h1 style="color: red; text-align: center;">
+🔥 Restaurant Recommendation System 🔥
+</h1>
+
+<p style="text-align:center;">
+🚀 Updated LIVE via Jenkins + Docker + ngrok
+</p>
       body {
         font-family: Arial, sans-serif;
         background: #f4f6f8;
