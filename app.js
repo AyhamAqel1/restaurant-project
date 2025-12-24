@@ -46,7 +46,7 @@ app.get("/", (req, res) => {
       button {
         padding: 10px 20px;
         background: #007bff;
-        color: red;
+        color: white;
         border: none;
         border-radius: 5px;
         cursor: pointer;
