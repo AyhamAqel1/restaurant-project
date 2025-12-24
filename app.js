@@ -23,7 +23,7 @@ app.get("/", (req, res) => {
 </p>
       body {
         font-family: Arial, sans-serif;
-        background: #f4f6f8;
+        background: #eefaf0;
         display: flex;
         justify-content: center;
         align-items: center;
