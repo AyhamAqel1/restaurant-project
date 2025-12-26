@@ -2,18 +2,10 @@ pipeline {
     agent any
 
     stages {
-
-        stage('Clone Repository') {
-            steps {
-                git branch: 'main',
-                    url: 'https://github.com/AyhamAqel1/restaurant-project.git'
-            }
-        }
-
         stage('Build & Deploy with Docker Compose') {
             steps {
                 sh '''
-                cd /home/ayham/restaurant-project
+                cd $WORKSPACE
                 docker-compose down || true
                 docker-compose up -d --build
                 '''
@@ -23,10 +15,10 @@ pipeline {
 
     post {
         success {
-            echo 'Deployment completed successfully'
+            echo '✅ Deployment completed successfully'
         }
         failure {
-            echo 'Deployment failed'
+            echo '❌ Deployment failed'
         }
     }
 }
