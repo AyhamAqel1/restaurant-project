@@ -3,7 +3,7 @@ const mysql = require("mysql2");
 const app = express();
 
 const db = mysql.createConnection({
-  host: "mysql",
+  host: "localhost",
   user: "appuser",
   password: "app123",
   database: "restaurant_db"
